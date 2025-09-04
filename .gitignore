@@ -1,0 +1,56 @@
+# dependencies (bun install)
+node_modules
+.pnp
+.pnp.js
+
+# output
+out
+dist
+*.tgz
+
+# code coverage
+coverage
+*.lcov
+
+# turbo
+.turbo
+.vercel
+
+# editor
+.vscode/*
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/*.code-snippets
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/shelf
+
+# database
+.drizzle/
+*.db
+generated/
+
+# tanstack
+.nitro
+.tanstack
+
+# logs
+logs
+_.log
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# dotenv environment variable files
+.env
+.env.*
+!.env.sample
+
+# caches
+.eslintcache
+.cache
+*.tsbuildinfo
+
+# misc
+.DS_Store
+*.pem
+*.local.txt
+tsconfig.tsbuildinfo
