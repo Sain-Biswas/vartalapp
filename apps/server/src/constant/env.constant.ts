@@ -3,12 +3,12 @@ import { z } from "zod";
 const environmentVariableSchema = z.object({
   DATABASE_URL: z.url(),
   NODE_ENV: z.enum(["development", "production", "testing"]),
-  PORT: z.coerce.number()
-})
+  PORT: z.coerce.number(),
+});
 
-const parse=environmentVariableSchema.safeParse(process.env);
+const parse = environmentVariableSchema.safeParse(process.env);
 
-if(!parse.success) {
+if (!parse.success) {
   console.log(parse.error);
   process.exit(1);
 }

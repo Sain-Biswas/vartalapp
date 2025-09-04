@@ -4,4 +4,3 @@ export { friendRelation, friendSchema } from "@/database/schema/friend.schema";
 export { sessionSchema } from "@/database/schema/session.schema";
 export { userSchema } from "@/database/schema/user.schema";
 export { verificationSchema } from "@/database/schema/verification.schema";
-
