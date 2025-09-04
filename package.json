@@ -1,12 +1,20 @@
 {
   "name": "vartalapp",
   "module": "index.ts",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "type": "module",
   "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "format": "turbo run format",
+    "lint": "turbo run lint",
+    "check-types": "turbo run check-types",
+    "dev": "turbo run dev",
+    "db:push": "turbo run db:push",
+    "db:studio": "turbo run db:studio",
+    "db:migrate": "turbo run db:migrate",
+    "db:generate": "turbo run db:generate"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "turbo": "^2.5.6"
@@ -14,5 +22,9 @@
   "peerDependencies": {
     "typescript": "^5"
   },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "packageManager": "bun@1.2.21"
 }
