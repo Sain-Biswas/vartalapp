@@ -1,21 +1,40 @@
+import { trpcServer } from "@hono/trpc-server";
 import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
 import { cors } from "hono/cors";
+import { logger } from "hono/logger";
 import { envServer } from "./constant/env.constant";
 import { auth } from "./lib/auth.lib";
+import { appRouter } from "./routes/register.route";
+import { createTRPCContext } from "./trpc/context.trpc";
 
 const app = new Hono();
 
-if (envServer.NODE_ENV === "development") app.use(cors());
+/**
+ * if in development use the logger and cors middlewares for testing and debugging
+ */
+if (envServer.NODE_ENV === "development") {
+  app.use(logger());
+  app.use(cors());
+};
 
 /**
  * mount the better-auth request handler to handle auth requests
  */
-app.use("/api/auth/**", (context) => auth.handler(context.req.raw));
+app.use("/api/auth/*", (context) => auth.handler(context.req.raw));
 
-app.get("/", (c) => {
-  return c.text("Hello Hono!");
-});
+/**
+ * mount the trpc procedure call handler to respond to trpc calls
+ */
+app.use("/api/trpc/*",
+  trpcServer({
+    router: appRouter,
+    endpoint: "/api/trpc",
+    createContext(_opts, c) {
+      return createTRPCContext({ context: c });
+    },
+  }),
+);
 
 /**
  * routes to serve static files output from frontend vite application
