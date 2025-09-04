@@ -1,7 +1,54 @@
 {
+  "$schema":"https://www.schemastore.org/tsconfig",
+  
+  // typescript compiler options
   "compilerOptions": {
+    // environment setup
+    "target": "esnext",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "types": ["bun"],
+
+    // stricter typechecking options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "resolveJsonModule": true,
+    "resolvePackageJsonExports": true,
+
+    // style options
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true,
+
+    // Path References
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+    },
+
+    // Bundler Options
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "moduleResolution": "bundler",
+    "incremental": true,
+    "composite": true,
+
+    // recommended options
     "strict": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
-  }
+    "jsxImportSource": "hono/jsx",
+    "verbatimModuleSyntax": true,
+    "noUncheckedSideEffectImports": true
+  },
+
+  // files to include for typescript checking
+  "include": ["**/*.ts", "**/*.js", "**/*.tsx", "**/*.jsx", "**/*.mjs"],
+
+  // Files to exclude for typescript checking
+  "exclude": ["node_modules", "dist", "public"]
 }
