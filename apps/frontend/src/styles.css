@@ -4,18 +4,33 @@
 
 @custom-variant dark (&:is(.dark *));
 
-body {
-  @apply m-0;
-  font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: 'Geist';
+  src: url('./assets/fonts/geist.woff2');
+  font-display: 'swap';
+  font-style: normal;
+  font-weight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
 }
-
-code {
-  font-family:
-    source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+@font-face {
+  font-family: 'Geist';
+  src: url('./assets/fonts/geist-italic.woff2');
+  font-display: 'swap';
+  font-style: italic;
+  font-weight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
+}
+@font-face {
+  font-family: 'GeistMono';
+  src: url('./assets/fonts/geistmono.woff2');
+  font-display: 'swap';
+  font-style: normal;
+  font-weight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
+}
+@font-face {
+  font-family: 'GeistMono';
+  src: url('./assets/fonts/geistmono-italic.woff2');
+  font-display: 'swap';
+  font-style: italic;
+  font-weight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
 }
 
 :root {
@@ -90,6 +105,9 @@ code {
 }
 
 @theme inline {
+  --font-sans: 'Geist', sans-serif;
+  --font-mono: 'GeistMono', sans-serif;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -133,15 +151,9 @@ code {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply m-0 bg-background text-foreground antialiased;
+    @apply m-0 bg-background font-sans text-foreground antialiased;
   }
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
+  code {
+    @apply font-mono;
   }
 }

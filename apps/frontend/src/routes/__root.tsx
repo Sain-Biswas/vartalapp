@@ -14,6 +14,7 @@ import type { QueryClient } from '@tanstack/react-query'
 import { ModeToggleGroup } from '@/integrations/themes/mode-toggle-group'
 import { Avatar, AvatarFallback } from '@/shadcn/ui/avatar'
 import { Button } from '@/shadcn/ui/button'
+import { Toaster } from '@/shadcn/ui/sonner'
 
 interface MyRouterContext {
   queryClient: QueryClient
@@ -35,6 +36,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
           TanStackQueryDevtools,
         ]}
       />
+      <Toaster />
     </>
   ),
   notFoundComponent: () => (

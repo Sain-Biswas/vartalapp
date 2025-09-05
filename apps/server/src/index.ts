@@ -15,7 +15,14 @@ const app = new Hono();
  */
 if (envServer.NODE_ENV === "development") {
   app.use(logger());
-  app.use(cors());
+  app.use("/*", cors({
+    origin: "http://localhost:5173", // replace with your origin
+    allowHeaders: ["Content-Type", "Authorization"],
+    allowMethods: ["POST", "GET", "OPTIONS"],
+    exposeHeaders: ["Content-Length"],
+    maxAge: 600,
+    credentials: true,
+  }));
 };
 
 /**

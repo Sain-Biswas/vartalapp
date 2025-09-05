@@ -9,11 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProtectedRouteRouteImport } from './routes/_protected/route'
 import { Route as AuthRouteRouteImport } from './routes/_auth/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthSignupRouteImport } from './routes/_auth/signup'
 import { Route as AuthSigninRouteImport } from './routes/_auth/signin'
+import { Route as AuthForgotPasswordRouteImport } from './routes/_auth/forgot-password'
+import { Route as ProtectedSettingRouteRouteImport } from './routes/_protected/setting/route'
+import { Route as ProtectedFriendRouteRouteImport } from './routes/_protected/friend/route'
+import { Route as ProtectedChatRouteRouteImport } from './routes/_protected/chat/route'
+import { Route as ProtectedSettingIndexRouteImport } from './routes/_protected/setting/index'
+import { Route as ProtectedFriendIndexRouteImport } from './routes/_protected/friend/index'
+import { Route as ProtectedChatIndexRouteImport } from './routes/_protected/chat/index'
+import { Route as ProtectedFriendStatusRouteImport } from './routes/_protected/friend/status'
+import { Route as ProtectedFriendRequestRouteImport } from './routes/_protected/friend/request'
+import { Route as ProtectedChatConversationRouteImport } from './routes/_protected/chat/$conversation'
 
+const ProtectedRouteRoute = ProtectedRouteRouteImport.update({
+  id: '/_protected',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRouteRoute = AuthRouteRouteImport.update({
   id: '/_auth',
   getParentRoute: () => rootRouteImport,
@@ -33,39 +48,165 @@ const AuthSigninRoute = AuthSigninRouteImport.update({
   path: '/signin',
   getParentRoute: () => AuthRouteRoute,
 } as any)
+const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => AuthRouteRoute,
+} as any)
+const ProtectedSettingRouteRoute = ProtectedSettingRouteRouteImport.update({
+  id: '/setting',
+  path: '/setting',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+const ProtectedFriendRouteRoute = ProtectedFriendRouteRouteImport.update({
+  id: '/friend',
+  path: '/friend',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+const ProtectedChatRouteRoute = ProtectedChatRouteRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => ProtectedRouteRoute,
+} as any)
+const ProtectedSettingIndexRoute = ProtectedSettingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProtectedSettingRouteRoute,
+} as any)
+const ProtectedFriendIndexRoute = ProtectedFriendIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProtectedFriendRouteRoute,
+} as any)
+const ProtectedChatIndexRoute = ProtectedChatIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProtectedChatRouteRoute,
+} as any)
+const ProtectedFriendStatusRoute = ProtectedFriendStatusRouteImport.update({
+  id: '/status',
+  path: '/status',
+  getParentRoute: () => ProtectedFriendRouteRoute,
+} as any)
+const ProtectedFriendRequestRoute = ProtectedFriendRequestRouteImport.update({
+  id: '/request',
+  path: '/request',
+  getParentRoute: () => ProtectedFriendRouteRoute,
+} as any)
+const ProtectedChatConversationRoute =
+  ProtectedChatConversationRouteImport.update({
+    id: '/$conversation',
+    path: '/$conversation',
+    getParentRoute: () => ProtectedChatRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chat': typeof ProtectedChatRouteRouteWithChildren
+  '/friend': typeof ProtectedFriendRouteRouteWithChildren
+  '/setting': typeof ProtectedSettingRouteRouteWithChildren
+  '/forgot-password': typeof AuthForgotPasswordRoute
   '/signin': typeof AuthSigninRoute
   '/signup': typeof AuthSignupRoute
+  '/chat/$conversation': typeof ProtectedChatConversationRoute
+  '/friend/request': typeof ProtectedFriendRequestRoute
+  '/friend/status': typeof ProtectedFriendStatusRoute
+  '/chat/': typeof ProtectedChatIndexRoute
+  '/friend/': typeof ProtectedFriendIndexRoute
+  '/setting/': typeof ProtectedSettingIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/forgot-password': typeof AuthForgotPasswordRoute
   '/signin': typeof AuthSigninRoute
   '/signup': typeof AuthSignupRoute
+  '/chat/$conversation': typeof ProtectedChatConversationRoute
+  '/friend/request': typeof ProtectedFriendRequestRoute
+  '/friend/status': typeof ProtectedFriendStatusRoute
+  '/chat': typeof ProtectedChatIndexRoute
+  '/friend': typeof ProtectedFriendIndexRoute
+  '/setting': typeof ProtectedSettingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteRouteWithChildren
+  '/_protected': typeof ProtectedRouteRouteWithChildren
+  '/_protected/chat': typeof ProtectedChatRouteRouteWithChildren
+  '/_protected/friend': typeof ProtectedFriendRouteRouteWithChildren
+  '/_protected/setting': typeof ProtectedSettingRouteRouteWithChildren
+  '/_auth/forgot-password': typeof AuthForgotPasswordRoute
   '/_auth/signin': typeof AuthSigninRoute
   '/_auth/signup': typeof AuthSignupRoute
+  '/_protected/chat/$conversation': typeof ProtectedChatConversationRoute
+  '/_protected/friend/request': typeof ProtectedFriendRequestRoute
+  '/_protected/friend/status': typeof ProtectedFriendStatusRoute
+  '/_protected/chat/': typeof ProtectedChatIndexRoute
+  '/_protected/friend/': typeof ProtectedFriendIndexRoute
+  '/_protected/setting/': typeof ProtectedSettingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/signin' | '/signup'
+  fullPaths:
+    | '/'
+    | '/chat'
+    | '/friend'
+    | '/setting'
+    | '/forgot-password'
+    | '/signin'
+    | '/signup'
+    | '/chat/$conversation'
+    | '/friend/request'
+    | '/friend/status'
+    | '/chat/'
+    | '/friend/'
+    | '/setting/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/signin' | '/signup'
-  id: '__root__' | '/' | '/_auth' | '/_auth/signin' | '/_auth/signup'
+  to:
+    | '/'
+    | '/forgot-password'
+    | '/signin'
+    | '/signup'
+    | '/chat/$conversation'
+    | '/friend/request'
+    | '/friend/status'
+    | '/chat'
+    | '/friend'
+    | '/setting'
+  id:
+    | '__root__'
+    | '/'
+    | '/_auth'
+    | '/_protected'
+    | '/_protected/chat'
+    | '/_protected/friend'
+    | '/_protected/setting'
+    | '/_auth/forgot-password'
+    | '/_auth/signin'
+    | '/_auth/signup'
+    | '/_protected/chat/$conversation'
+    | '/_protected/friend/request'
+    | '/_protected/friend/status'
+    | '/_protected/chat/'
+    | '/_protected/friend/'
+    | '/_protected/setting/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRouteRoute: typeof AuthRouteRouteWithChildren
+  ProtectedRouteRoute: typeof ProtectedRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_protected': {
+      id: '/_protected'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof ProtectedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_auth': {
       id: '/_auth'
       path: ''
@@ -94,15 +235,87 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSigninRouteImport
       parentRoute: typeof AuthRouteRoute
     }
+    '/_auth/forgot-password': {
+      id: '/_auth/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof AuthForgotPasswordRouteImport
+      parentRoute: typeof AuthRouteRoute
+    }
+    '/_protected/setting': {
+      id: '/_protected/setting'
+      path: '/setting'
+      fullPath: '/setting'
+      preLoaderRoute: typeof ProtectedSettingRouteRouteImport
+      parentRoute: typeof ProtectedRouteRoute
+    }
+    '/_protected/friend': {
+      id: '/_protected/friend'
+      path: '/friend'
+      fullPath: '/friend'
+      preLoaderRoute: typeof ProtectedFriendRouteRouteImport
+      parentRoute: typeof ProtectedRouteRoute
+    }
+    '/_protected/chat': {
+      id: '/_protected/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ProtectedChatRouteRouteImport
+      parentRoute: typeof ProtectedRouteRoute
+    }
+    '/_protected/setting/': {
+      id: '/_protected/setting/'
+      path: '/'
+      fullPath: '/setting/'
+      preLoaderRoute: typeof ProtectedSettingIndexRouteImport
+      parentRoute: typeof ProtectedSettingRouteRoute
+    }
+    '/_protected/friend/': {
+      id: '/_protected/friend/'
+      path: '/'
+      fullPath: '/friend/'
+      preLoaderRoute: typeof ProtectedFriendIndexRouteImport
+      parentRoute: typeof ProtectedFriendRouteRoute
+    }
+    '/_protected/chat/': {
+      id: '/_protected/chat/'
+      path: '/'
+      fullPath: '/chat/'
+      preLoaderRoute: typeof ProtectedChatIndexRouteImport
+      parentRoute: typeof ProtectedChatRouteRoute
+    }
+    '/_protected/friend/status': {
+      id: '/_protected/friend/status'
+      path: '/status'
+      fullPath: '/friend/status'
+      preLoaderRoute: typeof ProtectedFriendStatusRouteImport
+      parentRoute: typeof ProtectedFriendRouteRoute
+    }
+    '/_protected/friend/request': {
+      id: '/_protected/friend/request'
+      path: '/request'
+      fullPath: '/friend/request'
+      preLoaderRoute: typeof ProtectedFriendRequestRouteImport
+      parentRoute: typeof ProtectedFriendRouteRoute
+    }
+    '/_protected/chat/$conversation': {
+      id: '/_protected/chat/$conversation'
+      path: '/$conversation'
+      fullPath: '/chat/$conversation'
+      preLoaderRoute: typeof ProtectedChatConversationRouteImport
+      parentRoute: typeof ProtectedChatRouteRoute
+    }
   }
 }
 
 interface AuthRouteRouteChildren {
+  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
   AuthSigninRoute: typeof AuthSigninRoute
   AuthSignupRoute: typeof AuthSignupRoute
 }
 
 const AuthRouteRouteChildren: AuthRouteRouteChildren = {
+  AuthForgotPasswordRoute: AuthForgotPasswordRoute,
   AuthSigninRoute: AuthSigninRoute,
   AuthSignupRoute: AuthSignupRoute,
 }
@@ -111,9 +324,67 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
   AuthRouteRouteChildren,
 )
 
+interface ProtectedChatRouteRouteChildren {
+  ProtectedChatConversationRoute: typeof ProtectedChatConversationRoute
+  ProtectedChatIndexRoute: typeof ProtectedChatIndexRoute
+}
+
+const ProtectedChatRouteRouteChildren: ProtectedChatRouteRouteChildren = {
+  ProtectedChatConversationRoute: ProtectedChatConversationRoute,
+  ProtectedChatIndexRoute: ProtectedChatIndexRoute,
+}
+
+const ProtectedChatRouteRouteWithChildren =
+  ProtectedChatRouteRoute._addFileChildren(ProtectedChatRouteRouteChildren)
+
+interface ProtectedFriendRouteRouteChildren {
+  ProtectedFriendRequestRoute: typeof ProtectedFriendRequestRoute
+  ProtectedFriendStatusRoute: typeof ProtectedFriendStatusRoute
+  ProtectedFriendIndexRoute: typeof ProtectedFriendIndexRoute
+}
+
+const ProtectedFriendRouteRouteChildren: ProtectedFriendRouteRouteChildren = {
+  ProtectedFriendRequestRoute: ProtectedFriendRequestRoute,
+  ProtectedFriendStatusRoute: ProtectedFriendStatusRoute,
+  ProtectedFriendIndexRoute: ProtectedFriendIndexRoute,
+}
+
+const ProtectedFriendRouteRouteWithChildren =
+  ProtectedFriendRouteRoute._addFileChildren(ProtectedFriendRouteRouteChildren)
+
+interface ProtectedSettingRouteRouteChildren {
+  ProtectedSettingIndexRoute: typeof ProtectedSettingIndexRoute
+}
+
+const ProtectedSettingRouteRouteChildren: ProtectedSettingRouteRouteChildren = {
+  ProtectedSettingIndexRoute: ProtectedSettingIndexRoute,
+}
+
+const ProtectedSettingRouteRouteWithChildren =
+  ProtectedSettingRouteRoute._addFileChildren(
+    ProtectedSettingRouteRouteChildren,
+  )
+
+interface ProtectedRouteRouteChildren {
+  ProtectedChatRouteRoute: typeof ProtectedChatRouteRouteWithChildren
+  ProtectedFriendRouteRoute: typeof ProtectedFriendRouteRouteWithChildren
+  ProtectedSettingRouteRoute: typeof ProtectedSettingRouteRouteWithChildren
+}
+
+const ProtectedRouteRouteChildren: ProtectedRouteRouteChildren = {
+  ProtectedChatRouteRoute: ProtectedChatRouteRouteWithChildren,
+  ProtectedFriendRouteRoute: ProtectedFriendRouteRouteWithChildren,
+  ProtectedSettingRouteRoute: ProtectedSettingRouteRouteWithChildren,
+}
+
+const ProtectedRouteRouteWithChildren = ProtectedRouteRoute._addFileChildren(
+  ProtectedRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRouteRoute: AuthRouteRouteWithChildren,
+  ProtectedRouteRoute: ProtectedRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
