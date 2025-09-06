@@ -26,7 +26,7 @@ export function NavUser({ navigate }: NavUserProps) {
   if (error)
     return (
       <Avatar className="size-9 rounded-sm md:size-10">
-        <AvatarFallback className="size-9 rounded-sm md:size-10">
+        <AvatarFallback className="size-9 rounded-sm bg-destructive text-destructive-foreground md:size-10">
           <IconExclamationCircleFilled className="size-8" />
         </AvatarFallback>
       </Avatar>
@@ -37,7 +37,7 @@ export function NavUser({ navigate }: NavUserProps) {
       <DropdownMenuTrigger asChild>
         <Avatar className="size-9 rounded-sm md:size-10">
           <AvatarImage src={session?.user.image || undefined} />
-          <AvatarFallback className="size-9 rounded-sm md:size-10">
+          <AvatarFallback className="size-9 rounded-sm bg-sidebar-primary text-xl text-sidebar-primary-foreground md:size-10">
             {session?.user.name.charAt(0).toUpperCase()}
           </AvatarFallback>
         </Avatar>
@@ -47,7 +47,7 @@ export function NavUser({ navigate }: NavUserProps) {
         <DropdownMenuLabel className="flex gap-4 font-mono">
           <Avatar className="size-12 rounded-sm">
             <AvatarImage src={session?.user.image || undefined} />
-            <AvatarFallback className="size-12 rounded-sm bg-primary text-3xl">
+            <AvatarFallback className="size-12 rounded-sm bg-sidebar-accent text-3xl text-sidebar-accent-foreground">
               {session?.user.name.charAt(0).toUpperCase()}
             </AvatarFallback>
           </Avatar>

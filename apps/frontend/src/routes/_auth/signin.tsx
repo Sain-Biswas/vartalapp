@@ -103,7 +103,7 @@ function signInRoute() {
   }
 
   return (
-    <Card className="gap-0 bg-accent p-0">
+    <Card className="gap-0 bg-accent p-0 text-accent-foreground">
       <Card className="min-w-80 md:min-w-96">
         <CardHeader className="text-center">
           <Link to="/">
@@ -223,7 +223,7 @@ function signInRoute() {
       </Card>
       <div className="flex items-center justify-center gap-0.5 p-4">
         <p>Don&apos;t have an account?</p>
-        <Button variant={'link'} size={'sm'}>
+        <Button variant={'link'} size={'sm'} className="text-accent-foreground">
           <Link to="/signup">Create account</Link>
         </Button>
       </div>

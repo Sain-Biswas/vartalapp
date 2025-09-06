@@ -37,12 +37,12 @@ function protectedLayout() {
 
   return (
     <div className="flex h-screen flex-col-reverse font-sans md:flex-row">
-      <header className="flex-col justify-between border-t-2 border-border p-1 md:flex md:h-screen md:border-t-0 md:border-r-2 md:p-2">
+      <header className="flex-col justify-between border-t-2 border-sidebar-border bg-sidebar p-1 md:flex md:h-screen md:border-t-0 md:border-r-2 md:p-2">
         <div className="hidden flex-col items-center justify-center gap-3 md:flex">
           <Link to="/" className="mb-4">
             <Avatar className="size-10 rounded-sm">
-              <AvatarFallback className="size-10 rounded-sm">
-                <OrigamiIcon className="size-8" />
+              <AvatarFallback className="size-10 rounded-sm bg-sidebar-primary">
+                <OrigamiIcon className="size-8 text-sidebar-primary-foreground" />
               </AvatarFallback>
             </Avatar>
           </Link>
@@ -59,7 +59,9 @@ function protectedLayout() {
                 </Link>
               </Button>
             </TooltipTrigger>
-            <TooltipContent className="hidden md:block">Chats</TooltipContent>
+            <TooltipContent className="hidden md:block" side="right">
+              Chats
+            </TooltipContent>
           </Tooltip>
 
           <Tooltip>
@@ -74,7 +76,9 @@ function protectedLayout() {
                 </Link>
               </Button>
             </TooltipTrigger>
-            <TooltipContent className="hidden md:block">Friends</TooltipContent>
+            <TooltipContent className="hidden md:block" side="right">
+              Friends
+            </TooltipContent>
           </Tooltip>
         </div>
 
@@ -121,7 +125,7 @@ function protectedLayout() {
                 </Link>
               </Button>
             </TooltipTrigger>
-            <TooltipContent className="hidden md:block">
+            <TooltipContent className="hidden md:block" side="right">
               Settings
             </TooltipContent>
           </Tooltip>
