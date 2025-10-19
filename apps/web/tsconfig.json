@@ -18,7 +18,14 @@
 
     "baseUrl": ".",
     "paths": {
-      "@web/*": ["./src/*"]
+      "@web/*": ["./src/*"],
+      "@server/*": ["../server/src/*"]
     }
-  }
+  },
+
+  "references": [
+    {
+      "path": "../server"
+    }
+  ]
 }
