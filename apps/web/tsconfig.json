@@ -1,0 +1,24 @@
+{
+  "$schema": "https://www.schemastore.org/tsconfig",
+
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "eslint.config.js",
+    "prettier.config.js",
+    "vite.config.js"
+  ],
+
+  "extends": "../../tsconfig.json",
+
+  "compilerOptions": {
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["vite/client"],
+
+    "baseUrl": ".",
+    "paths": {
+      "@web/*": ["./src/*"]
+    }
+  }
+}

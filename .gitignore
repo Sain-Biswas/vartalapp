@@ -35,6 +35,7 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 # visual studio code
 .vscode/*
 !.vscode/settings.json
+!.vscode/extensions.json
 
 # IntelliJ based IDEs
 .idea
