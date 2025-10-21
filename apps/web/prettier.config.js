@@ -1,13 +1,34 @@
 //  @ts-check
 
-/** @type {import('prettier').Config & import('prettier-plugin-tailwindcss').PluginOptions} */
+/** @type { import('prettier').Config & import('prettier-plugin-tailwindcss').PluginOptions & import("@ianvs/prettier-plugin-sort-imports").PluginConfig } */
 const config = {
-  semi: true,
-  singleQuote: true,
-  trailingComma: "none",
+  plugins: [
+    'prettier-plugin-tailwindcss',
+    '@ianvs/prettier-plugin-sort-imports'
+  ],
 
-  plugins: ["prettier-plugin-tailwindcss"],
-  tailwindStylesheet: "./src/index.css",
+  tailwindStylesheet: './src/index.css',
+  tailwindFunctions: ['cva', 'cn', 'clsx', 'twMerge'],
+
+  importOrder: [
+    '<BUILTIN_MODULES>',
+    '^@web/assets/(.*)$',
+    '^(react/(.*)$)|^(react$)',
+    '^@repo/(.*)$',
+    '<THIRD_PARTY_MODULES>',
+    '^@server/(.*)$',
+    '^@web/integrations/(.*)$',
+    '^@web/shadcn/(.*)$',
+    '^@web/components/(.*)$',
+    '^@web/(.*)$',
+    '^./(.*)$'
+  ],
+
+  semi: true,
+  singleQuote: false,
+  trailingComma: 'none',
+  quoteProps: 'consistent',
+  htmlWhitespaceSensitivity: 'strict'
 };
 
 export default config;
