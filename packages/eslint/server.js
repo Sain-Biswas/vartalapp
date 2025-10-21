@@ -14,8 +14,8 @@ export const serverESLintConfig = defineConfig([
     languageOptions: {
       globals: {
         ...globals.serviceworker,
-        ...globals.node,
-      },
-    },
-  },
+        ...globals.node
+      }
+    }
+  }
 ]);

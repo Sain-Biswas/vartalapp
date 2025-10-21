@@ -15,5 +15,5 @@ export const baseESLintConfig = defineConfig([
   tsESLint.configs.strict,
   tsESLint.configs.stylistic,
   pluginJs.configs.recommended,
-  pluginPrettier,
+  pluginPrettier
 ]);

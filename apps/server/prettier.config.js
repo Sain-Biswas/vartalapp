@@ -6,17 +6,21 @@ const config = {
 
   importOrder: [
     "<BUILTIN_MODULES>",
+    "<TYPES>",
     "^@repo/(.*)$",
     "<THIRD_PARTY_MODULES>",
     "^@server/(.*)$",
-    "^./(.*)$",
+    "^./(.*)$"
   ],
 
   semi: true,
-  singleQuote: false,
-  trailingComma: "none",
-  quoteProps: "consistent",
+  quoteProps: "as-needed",
+  arrowParens: "always",
+  endOfLine: "crlf",
+  experimentalTernaries: true,
   htmlWhitespaceSensitivity: "strict",
+  singleAttributePerLine: true,
+  trailingComma: "none"
 };
 
 export default config;
