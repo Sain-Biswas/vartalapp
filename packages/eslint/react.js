@@ -18,31 +18,31 @@ export const reactESLintConfig = defineConfig([
     files: ["**/*.{ts,tsx,js,mjs}"],
     plugins: {
       "react-hooks": pluginReactHooks,
-      react: pluginReact,
+      react: pluginReact
     },
     rules: {
       ...pluginReactHooks.configs["recommended-latest"].rules,
       ...pluginReact.configs.recommended.rules,
       ...pluginReact.configs["jsx-runtime"].rules,
-      "react/react-in-jsx-scope": "off",
+      "react/react-in-jsx-scope": "off"
     },
     settings: {
       react: {
-        version: "detect",
-      },
+        version: "detect"
+      }
     },
     languageOptions: {
       ecmaVersion: 2022,
       globals: {
-        ...globals.browser,
+        ...globals.browser
       },
       parserOptions: {
         ecmaFeatures: {
-          jsx: true,
-        },
-      },
-    },
+          jsx: true
+        }
+      }
+    }
   },
   pluginTanstackQuery.configs["flat/recommended"],
-  pluginTanstackRouter.configs["flat/recommended"],
+  pluginTanstackRouter.configs["flat/recommended"]
 ]);
