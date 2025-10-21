@@ -1,3 +1,5 @@
+import { resolve } from "path";
+import tailwindcssVite from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
@@ -8,6 +10,13 @@ export default defineConfig({
       babel: {
         plugins: [["babel-plugin-react-compiler"]]
       }
-    })
-  ]
+    }),
+    tailwindcssVite()
+  ],
+  resolve: {
+    alias: {
+      "@web": resolve(import.meta.dirname, "./src"),
+      "@server": resolve(import.meta.dirname, "../server/src")
+    }
+  }
 });
