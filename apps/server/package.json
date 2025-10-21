@@ -4,9 +4,10 @@
   "scripts": {
     "dev": "bun --bun run --hot src/index.ts",
     "start": "bun --bun run src/index.ts",
-    "check-types": "tsc --noEmit",
     "lint": "eslint --fix",
-    "check": "eslint --fix && tsc --noEmit"
+    "format": "prettier --write .",
+    "check-types": "tsc --noEmit",
+    "check": "prettier --write . && eslint --fix && tsc --noEmit"
   },
   "dependencies": {
     "hono": "^4.10.1",
