@@ -20,5 +20,14 @@ export default defineConfig({
       "@web": resolve(import.meta.dirname, "./src"),
       "@server": resolve(import.meta.dirname, "../server/src")
     }
+  },
+  build: {
+    outDir: "../server/public",
+    emptyOutDir: true
+  },
+  server: {
+    proxy: {
+      "/api": "http://localhost:8080"
+    }
   }
 });
