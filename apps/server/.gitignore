@@ -1,4 +1,4 @@
 # frontend outputs
 public
-
-/generated/prisma
+out
+/src/generated/prisma
