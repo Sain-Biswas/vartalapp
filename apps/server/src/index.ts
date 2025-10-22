@@ -1,6 +1,7 @@
 import type { Env, ExecutionContext } from "hono";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { Hono } from "hono";
+import { serveStatic } from "hono/bun";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { env } from "@server/constant/env.constant";
@@ -42,6 +43,9 @@ app.use("/api/trpc/*", (ctx) => {
     createContext: () => createTRPCContext(ctx)
   });
 });
+
+app.use("*", serveStatic({ root: "./public" }));
+app.use("*", serveStatic({ path: "./public/index.html" }));
 
 export default {
   port: env.PORT,
