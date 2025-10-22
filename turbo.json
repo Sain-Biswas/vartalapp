@@ -26,7 +26,8 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULTS$", ".env", ".env.*"],
-      "outputs": ["public/**"]
+      "outputs": ["public/**"],
+      "cache": false
     },
 
     "format": {

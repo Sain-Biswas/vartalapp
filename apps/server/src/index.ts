@@ -44,6 +44,7 @@ app.use("/api/trpc/*", (ctx) => {
   });
 });
 
+app.use("/favicon.ico", serveStatic({ path: "./public/logo.svg" }));
 app.use("*", serveStatic({ root: "./public" }));
 app.use("*", serveStatic({ path: "./public/index.html" }));
 
