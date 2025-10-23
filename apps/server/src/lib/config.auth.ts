@@ -15,7 +15,7 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
   },
   plugins: [
     openAPI({
-      theme: "kepler"
+      theme: "mars"
     })
   ],
   socialProviders: {
