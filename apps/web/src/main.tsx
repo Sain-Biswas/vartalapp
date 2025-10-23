@@ -5,6 +5,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { getQueryClient } from "@web/lib/query-client";
 import { routeTree } from "@web/routeTree.gen";
+import { ThemeProvider } from "./integrations/theme/provider";
 
 const queryClient = getQueryClient();
 
@@ -31,7 +32,12 @@ if (rootElement && !rootElement.innerHTML) {
   root.render(
     <StrictMode>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <ThemeProvider
+          defaultTheme="system"
+          storageKey="ui-theme"
+        >
+          <RouterProvider router={router} />
+        </ThemeProvider>
       </QueryClientProvider>
     </StrictMode>
   );

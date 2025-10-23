@@ -2,7 +2,7 @@ import type {
   TAppRouter,
   TRouterInputs,
   TRouterOutputs
-} from "@server/trpc/router.trpc";
+} from "@server/types/trpc.type";
 import {
   createTRPCClient,
   httpBatchStreamLink,
