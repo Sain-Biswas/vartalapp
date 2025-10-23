@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "tsdown",
-    "dev": "tsdown --watch",
+    "dev": "tsdown --watch ./src",
     "lint": "eslint --fix",
     "format": "prettier --write .",
     "check-types": "tsc --noEmit",
