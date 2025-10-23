@@ -6,8 +6,9 @@ import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { env } from "@server/constant/env.constant";
 import { auth } from "@server/lib/config.auth";
-import { createTRPCContext } from "./trpc/index.trpc";
-import { appRouter } from "./trpc/router.trpc";
+import { engine } from "@server/lib/server.socket";
+import { createTRPCContext } from "@server/trpc/index.trpc";
+import { appRouter } from "@server/trpc/router.trpc";
 
 const app = new Hono<{
   Variables: {
@@ -48,12 +49,19 @@ app.use("/favicon.ico", serveStatic({ path: "./public/logo.svg" }));
 app.use("*", serveStatic({ root: "./public" }));
 app.use("*", serveStatic({ path: "./public/index.html" }));
 
+const { websocket } = engine.handler();
+
 export default {
   port: env.PORT,
   idleTimeout: 30,
   fetch: (req: Request, server: Env, ctx: ExecutionContext) => {
-    // const url = new URL(req.url);
+    const url = new URL(req.url);
 
-    return app.fetch(req, server, ctx);
-  }
+    if (url.pathname === "/socket.io/") {
+      return engine.handleRequest(req, server);
+    } else {
+      return app.fetch(req, server, ctx);
+    }
+  },
+  websocket
 };
