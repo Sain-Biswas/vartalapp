@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { ModeToggleButton } from "@web/integrations/theme/mode-toggle-button";
+import { Spinner } from "@web/shadcn/ui/spinner";
 import { trpc } from "@web/lib/trpc";
 
 function Test() {
@@ -17,7 +18,7 @@ function IndexPage() {
     <main>
       <div className="font-bold text-lg">Learn React</div>
       <ModeToggleButton />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Spinner />}>
         <Test />
       </Suspense>
     </main>
