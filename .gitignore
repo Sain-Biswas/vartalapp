@@ -1,6 +1,9 @@
 # dependencies (bun install)
 node_modules
 
+# turbopack
+.turbo
+
 # output
 out
 dist
@@ -17,18 +20,36 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # dotenv environment variable files
 .env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
+.env.*
+!.env.sample
 
 # caches
 .eslintcache
 .cache
 *.tsbuildinfo
 
+# Visual Studio Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
 # IntelliJ based IDEs
 .idea
 
 # Finder (MacOS) folder config
 .DS_Store
+
+# Database related
+*.local
+*.db
+
+# Tanstack
+.tanstack
+.nitro
+
+# Misc
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
